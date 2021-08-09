@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Personel Yönetim Sistemi</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="mt-4">Personel Listesi</h1>
+		<a th:href="@{/personel-ekle}" class="btn btn-outline-primary mt-2">Personel Ekle</a>
+		<table class="table table-hover mt-4">
+			<thead>
+				<tr>
+					<th scope="col">Personel Adı</th>
+					<th scope="col">Personel Soyadı</th>
+					<th scope="col">Personel Mail Adresi</th>
+					<th scope="col">İşlemler</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="employee : ${listEmployees}">
+					<td th:text="${employee.firstName}"></td>
+					<td th:text="${employee.lastName}"></td>
+					<td th:text="${employee.email}"></td>
+					<td>
+						<a th:href="@{/personel-guncelle/{id}(id=${employee.id})}"
+							class="btn btn-outline-success">Güncelle
+							<a th:href="@{/personel-sil/{id}(id=${employee.id})}"
+								class="btn btn-outline-danger ml-2">Sil
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
